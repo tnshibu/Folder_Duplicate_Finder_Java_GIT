@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.text.DecimalFormat;
 import com.vypeensoft.util.*;
-import java.util.stream.Collectors;
 
 /*
 */
@@ -22,6 +22,7 @@ public class FolderDuplicateFinder {
     } else {
         folderSizeMap = loadFileLists(new String[]{"."}); // if no arguments are given, process current directory
     }
+    //System.out.println("REM folderSizeMap="+folderSizeMap);
 
     MapKeyValueArray mkva = new MapKeyValueArray();
     folderSizeMap.forEach((k,v)->mkva.add(v+"",k));
@@ -34,7 +35,7 @@ public class FolderDuplicateFinder {
     Collections.sort(multiValuedKeysLong);
     System.out.println("REM multiValuedKeys="+multiValuedKeys);
     multiValuedKeysLong.forEach(k->{
-        System.out.println(k);
+        System.out.println("REM : folderSize="+FormatUtil.formatNumberWithComma(k));
         CollectionUtil.print(mkva.get(k+"")); 
         System.out.println();
         });
